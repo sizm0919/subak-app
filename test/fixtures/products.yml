@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  callput: MyText
+  brand: MyText
+  settlement_date: 2021-09-30
+  closing_date: 2021-09-30
+  exercise_price: 1
+  option_premium: 1
+
+two:
+  callput: MyText
+  brand: MyText
+  settlement_date: 2021-09-30
+  closing_date: 2021-09-30
+  exercise_price: 1
+  option_premium: 1
