@@ -30,12 +30,10 @@ end
 Admin.create!(
     [
         {
-            id: 1,
             email: 'admin@mail.com',
             password: 'adminpass'
         },
         {
-            id: 2,
             email: 'subadmin@mail.com',
             password: 'subadminpass'
         }

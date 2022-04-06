@@ -37,9 +37,7 @@
         <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
           <%= link_to("プロフィール確認", "/top/profile", {method: "profile", class: "nav-link "}) %>
           <div class="dropdown-divider"></div>
-          <%= link_to "ログアウト(ユーザー)",destroy_account_session_path,method: :delete,:style=>"color:white;" %><br>
-          <%= link_to "ログアウト(管理者)",destroy_admin_session_path,method: :delete,:style=>"color:white;" %>
-
+          <%= link_to "ログアウト",destroy_account_session_path,method: :delete,:style=>"color:white;" %><br>
         </div>
       </li>
     </ul>

@@ -5,12 +5,14 @@ Rails.application.routes.draw do
   resources :carts, only: [:show]
   resources :orders
   resources :creditcards
+  resources :admin_products
  
   root to: 'top#index'
 
   devise_for :admins, controllers: {
     sessions: "admins/sessions"
   }
+
   devise_for :accounts, controllers: {
     sessions:      "accounts/sessions",
     registrations: "accounts/registrations",
@@ -61,5 +63,13 @@ Rails.application.routes.draw do
   get 'top/profile'
   post 'top/profile'
   get 'top/news'
+
+  #admin
+  get 'admins/index'
+  get 'admins', to: 'admins#index'
+  post 'admins/index'
+  post 'admins', to: 'admins#index'
+
+
 
 end
