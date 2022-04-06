@@ -1,13 +1,21 @@
 Rails.application.routes.draw do
   resources :companies
   resources :product_prices
-  devise_for :accounts
   resources :products
   resources :carts, only: [:show]
   resources :orders
   resources :creditcards
  
   root to: 'top#index'
+
+  devise_for :admins, controllers: {
+    sessions: "admins/sessions"
+  }
+  devise_for :accounts, controllers: {
+    sessions:      "accounts/sessions",
+    registrations: "accounts/registrations",
+    passwords: "accounts/passwords"
+  }
 
   post 'orders/order_position_delete' => 'orders#order_position_delete'
   

@@ -26,3 +26,18 @@ end
 CSV.foreach('db/cattlenum.csv', headers: true) do |row|
     CattleNum.create(row.to_hash)
 end
+
+Admin.create!(
+    [
+        {
+            id: 1,
+            email: 'admin@mail.com',
+            password: 'adminpass'
+        },
+        {
+            id: 2,
+            email: 'subadmin@mail.com',
+            password: 'subadminpass'
+        }
+    ]
+)
