@@ -56,9 +56,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
-group :production do
-  #gem 'pg'
-end
+gem 'pg'
 
 gem 'chartkick'
 
@@ -68,4 +66,4 @@ gem 'payjp'
 # 環境変数を簡単に定義できるENVファイルを対応させるgem
 gem 'dotenv-rails'
 
-gem 'pg'
+
