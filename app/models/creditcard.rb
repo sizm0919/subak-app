@@ -1,2 +1,0 @@
-class Creditcard < ApplicationRecord
-end
