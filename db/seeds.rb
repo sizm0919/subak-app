@@ -24,5 +24,14 @@ CSV.foreach('db/productprice.csv', headers: true) do |row|
 end
 
 CSV.foreach('db/cattlenum.csv', headers: true) do |row|
-    CattleNum.create(row.to_hash)
+    CattleNum.create(
+        brand_id: row[0],
+        date: row[1],
+        num: row[2])
+end
+
+CSV.foreach('db/admin.csv', headers: true) do |row|
+    Admin.create(
+        email: row[0],
+        password: row[1])
 end
