@@ -1,0 +1,32 @@
+<h1 class="display-4 text-primary">Products</h1>
+<table class="table">
+  <tr>
+    <th>ID</th><th>コール/プット</th><th>銘柄</th><th>満期日</th><th>購入締切日</th><th>行使価格</th>
+      <th>オプションプレミアム</th><th colspan="2"></th>
+  </tr>
+  <% @products.each do |obj| %>
+  <tr>
+    <td><%= obj.id %></td>
+    <td><%= obj.callput %></td>
+    <td><%= obj.brand.name %></td>
+    <td><%= obj.settlement_date %></td>
+    <td><%= obj.closing_date %></td>
+    <td><%= obj.exercise_price %></td>
+    <td><%= obj.option_premium %></td>
+    <td width="80px">
+      <a href="/products/edit/<%= obj.id %>">編集</a></td>
+    <td width="80px">
+      <a href="javascript:delData(
+        <%= (obj.id.to_s + ",'".to_s + obj.id.to_s).html_safe %>');">削除
+        </a></td>
+  </tr>
+  <% end %>
+</table>
+
+<script>
+function delData(id,brand){
+  if (confirm('「' + brand + '」のデータを削除しますか？')){
+    document.location = "/products/delete/" + id;
+  }
+}
+</script>

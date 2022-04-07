@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+   <!-- Bootstrap用CSSの読み込み -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+  <!-- Bootstrap用JavaScriptの読み込み -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Subak</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to("Home", "/top/index", {method: "index", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to("商品購入", "/top/products", {method: "products", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to("ポジション確認", "/top/position", {method: "position", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          プロフィール
+        </a>
+        <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
+          <%= link_to("プロフィール確認", "/top/profile", {method: "profile", class: "nav-link"}) %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "ログアウト".html_safe,destroy_account_session_path,method: :delete,:style=>"color:white;" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
+<h5>ポジション確認<small class="text-muted"></small></h5>
+<p>現在価格：<%= @date %>時点</p>
+<table class="table text-nowrap">
+  <tr>
+    <th>コール/プット</th><th>銘柄</th><th>満期日</th><th>購入締切日</th><th>行使価格</th>
+      <th>プレミアム</th><th>購入数</th><th>プレミアム合計額</th><th>現物現在価格</th><th>満期予定額</th>
+      <th>損益予定</th><th colspan="2"></th>
+  </tr>
+      <% @order_position.each do |position| %>
+      <tr>
+        <td><%= position["callput"] %></td>
+        <td><%= position["name"] %></a></td>
+        <td><%= position["settlement_date"] %></td>
+        <td><%= position["closing_date"] %></td>
+        <td><%= position["exercise_price"] %>円</td>
+        <td><%= position["option_premium"] %>円</td>
+        <td><%= position["quantity"] %></td>
+        <td><%= position["premium_sum"] %>円</td>
+        <td><%= position["price"]%>円</td>
+        <td><%= position["settlement_amount"] %>円</td>
+        <td><%= position["profit_loss_amount"] %>円</td>
+      </tr>
+    <% end %>
+</table>
+<div align="right" class="fbtn">
+    <%= button_to 'ポジションデータ削除(デモ用)',  controller: :orders, action: :order_position_delete, class: 'fbtn' %>
+</div>
+
+<br>
+<h5>満期終了<small class="text-muted"></small></h5>
+<table class="table text-nowrap">
+  <tr>
+    <th>コール/プット</th><th>銘柄</th><th>満期日</th><th>購入締切日</th><th>行使価格</th>
+      <th>プレミアム</th><th>購入数</th><th>プレミアム合計額</th><th>満期日価格</th><th>満期額</th>
+      <th>決定損益</th><th colspan="2"></th>
+  </tr>
+      <% @order_setteled.each do |setteled| %>
+      <tr>
+        <td><%= setteled["callput"] %></td>
+        <td><%= setteled["name"] %></a></td>
+        <td><%= setteled["settlement_date"] %></td>
+        <td><%= setteled["closing_date"] %></td>
+        <td><%= setteled["exercise_price"] %>円</td>
+        <td><%= setteled["option_premium"] %>円</td>
+        <td><%= setteled["quantity"] %></td>
+        <td><%= setteled["premium_sum"] %>円</td>
+        <td><%= setteled["price"]%>円</td>
+        <td><%= setteled["settlement_amount"] %>円</td>
+        <td><%= setteled["profit_loss_amount"] %>円</td>
+      </tr>
+    <% end %>
+</table>
+
+</html>
+
