@@ -68,4 +68,4 @@ gem 'payjp'
 # 環境変数を簡単に定義できるENVファイルを対応させるgem
 gem 'dotenv-rails'
 
-gem 'pg', '~> 1.3.5'
+gem 'pg', '~> 1.3.5', group: :production
