@@ -28,7 +28,9 @@ gem 'jbuilder', '~> 2.7'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
-gem 'pg', '~> 1.3.5'
+gem 'pg'
+
+#gem 'pg', '~> 1.3.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -60,7 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 
 group :production do
-  #gem 'pg', '~> 1.3.5'
+  #"gem 'pg'
 end
 
 gem 'chartkick'

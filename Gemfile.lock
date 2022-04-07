@@ -269,7 +269,7 @@ DEPENDENCIES
   dotenv-rails
   jbuilder (~> 2.7)
   payjp
-  pg (~> 1.3.5)
+  pg
   puma (~> 5.0)
   rack-mini-profiler (~> 2.0)
   rails (~> 6.1.4, >= 6.1.4.1)
