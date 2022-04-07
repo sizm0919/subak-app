@@ -1,0 +1,77 @@
+<%= form_with(model: company) do |form| %>
+  <% if company.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(company.errors.count, "error") %> prohibited this company from being saved:</h2>
+
+      <ul>
+        <% company.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_area :name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :account_id %>
+    <%= form.number_field :account_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :postal_code %>
+    <%= form.text_area :postal_code %>
+  </div>
+
+  <div class="field">
+    <%= form.label :address %>
+    <%= form.text_area :address %>
+  </div>
+
+  <div class="field">
+    <%= form.label :representative_name %>
+    <%= form.text_area :representative_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :co_number %>
+    <%= form.text_area :co_number %>
+  </div>
+
+  <div class="field">
+    <%= form.label :co_registration_date %>
+    <%= form.date_field  :co_registration_date %>
+  </div>
+
+  <div class="field">
+    <%= form.label :farmer %>
+    <%= form.text_field :farmer %>
+  </div>
+
+  <div class="field">
+    <%= form.label :wholesale %>
+    <%= form.text_field :wholesale %>
+  </div>
+
+  <div class="field">
+    <%= form.label :retail %>
+    <%= form.text_field :retail %>
+  </div>
+
+  <div class="field">
+    <%= form.label :restaurant %>
+    <%= form.text_field :restaurant %>
+  </div>
+
+  <div class="field">
+    <%= form.label :homemeal %>
+    <%= form.text_field :homemeal %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

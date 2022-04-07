@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+   <!-- Bootstrap用CSSの読み込み -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+  <!-- Bootstrap用JavaScriptの読み込み -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Subak</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to("Home", "/top/index", {method: "index", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to("商品購入", "/top/products", {method: "products", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to("ポジション確認", "/top/position", {method: "position", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          プロフィール
+        </a>
+        <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
+          <%= link_to("プロフィール確認", "/top/profile", {method: "profile", class: "nav-link"}) %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "ログアウト".html_safe,destroy_account_session_path,method: :delete,:style=>"color:white;" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
+<div align="center">
+  <h4><%= @msg %></h4>
+</div>
+</html>
