@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+   <!-- Bootstrap用CSSの読み込み -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+  <!-- Bootstrap用JavaScriptの読み込み -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Subak</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <%= link_to("Home", "/top/index", {method: "index", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to("商品購入", "/top/products", {method: "products", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to("ポジション確認", "/top/position", {method: "position", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          プロフィール
+        </a>
+        <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
+          <%= link_to("プロフィール確認", "/top/profile", {method: "profile", class: "nav-link "}) %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "ログアウト",destroy_account_session_path,method: :delete,:style=>"color:white;" %><br>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<br>
+<h5>指標 <small class="text-muted"></small></h5>
+<div class="container">
+  <div class="card-deck mb-3 text-center">
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h6 class="my-0 font-weight-normal">和牛めす 生体 A5</h6>
+        <h6 class="my-0 font-weight-normal">(東京市場)</h6>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title pricing-card-title">3,000 <small class="text-muted">円/kg</small></h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>-240</li>
+          <li>-8%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h6 class="my-0 font-weight-normal">和牛めす 生体 A4</h6>
+        <h6 class="my-0 font-weight-normal">(東京市場)</h6>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title pricing-card-title">2,470 <small class="text-muted">円/kg</small></h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>-451円</li>
+          <li>-18.3%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h6 class="my-0 font-weight-normal">和牛めす 生体 A3</h6>
+        <h6 class="my-0 font-weight-normal">(東京市場)</h6>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title pricing-card-title">2,138 <small class="text-muted">円/kg</small></h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>-61円</li>
+          <li>-2.9%</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h6 class="my-0 font-weight-normal">とうもろこし先物</h6>
+        <h6 class="my-0 font-weight-normal">(期近)</h6>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title pricing-card-title">41,200<small class="text-muted">円/トン</small></h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>+220</li>
+          <li>+0.5%</li>
+        </ul>
+      </div>
+    </div>
+    <div class="card mb-4 shadow-sm">
+      <div class="card-header">
+        <h6 class="my-0 font-weight-normal">とうもろこし先物</h6>
+        <h6 class="my-0 font-weight-normal">(期先)</h6>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title pricing-card-title">41,070<small class="text-muted">円/トン</small></h5>
+        <ul class="list-unstyled mt-3 mb-4">
+          <li>+70</li>
+          <li>+0.2%</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+
+<div class="graph">
+  <h5>牛肉価格推移(生体) <small class="text-muted"></small></h5>
+  <%= line_chart @ProductPriceData.group(:name).group(:price_date).sum(:price),
+     thousands: ",", ytitle: "円/kg", min: 1000 %>
+</div>
+
+<br>
+<div class="graph">
+  <h5>牛頭数推移(生体) <small class="text-muted"></small></h5>
+  <%= column_chart @CattleNumData.group(:name).group(:date).sum(:num),
+     ytitle: "頭"%>
+</div>
+
+<br>
+<%= javascript_pack_tag 'news_data' %>
+  <h5>ニュース <small class="text-muted"></small></h5>
+<div id="data"></div>
+
+</html>

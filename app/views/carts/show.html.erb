@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+   <!-- Bootstrap用CSSの読み込み -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+  <!-- Bootstrap用JavaScriptの読み込み -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">Subak</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <%= link_to("Home", "/top/index", {method: "index", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item active">
+        <%= link_to("商品購入", "/top/products", {method: "products", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item">
+        <%= link_to("ポジション確認", "/top/position", {method: "position", class: "nav-link"}) %>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          プロフィール
+        </a>
+        <div class="dropdown-menu navbar-dark bg-dark" aria-labelledby="navbarDropdown">
+          <%= link_to("プロフィール確認", "/top/profile", {method: "profile", class: "nav-link"}) %>
+          <div class="dropdown-divider"></div>
+          <%= link_to "ログアウト".html_safe,destroy_account_session_path,method: :delete,:style=>"color:white;" %>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<table class="table">
+  <tr>
+    <%# <th>ID</th> %>
+    <th>コール/プット</th><th>銘柄</th><th>満期日</th><th>購入締切日</th><th>行使価格</th>
+      <th>オプションプレミアム</th><th>購入数</th><th>小計</th><th colspan="2"></th>
+  </tr>
+  <% @cart_items.each do |obj| %>
+  <tr>
+    <td><%= obj.product.callput %></td>
+    <td><%= obj.product.brand.name %></td>
+    <td><%= obj.product.settlement_date %></td>
+    <td><%= obj.product.closing_date %></td>
+    <td><%= obj.product.exercise_price %>円</td>
+    <td><%= obj.product.option_premium %>円</td>
+    <td>
+      <%= form_with  url: {controller: 'carts', action: 'update_item'} do |f| %>
+        <%= f.number_field :quantity ,value:obj.quantity,min:1,max:1000,class:"form-control" %>
+        <td><%= obj.product.option_premium * obj.quantity %>円</td>
+        <%= f.hidden_field :product_id, value: obj.product_id %>
+        <td><%= f.submit '更新' %></td>
+      <% end %>
+    </td>
+    <td>
+      <%= form_with  url: {controller: 'carts', action: 'delete_item'} do |f| %>
+        <%= f.hidden_field :product_id, value: obj.product_id %>
+        <td><%= f.submit '削除' %></td>
+      <% end %>
+    </td>
+
+  </tr>
+  <% end %>
+</table>
+<div align="right">
+  <h4><%= "合計：#{@total}円" %></h4>
+</div>
+<br>
+<div align="right" class="fbtn">
+    <%= button_to '購入手続きへ',  controller: :carts, action: :buy, class: 'fbtn' %>
+</div>
+
+</html>

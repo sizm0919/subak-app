@@ -1,0 +1,23 @@
+<h1 class="display-4 text-primary">Admin_Products</h1>
+<table class="table">
+  <a href="/admin_products/new">追加</a></td>
+  <tr>
+    <th>ID</th><th>コール/プット</th><th>銘柄</th><th>満期日</th><th>購入締切日</th><th>行使価格</th>
+      <th>オプションプレミアム</th><th colspan="2"></th>
+  </tr>
+  <% @admin_products.each do |obj| %>
+  <tr>
+    <td><%= obj.id %></td>
+    <td><%= obj.callput %></td>
+    <td><%= obj.brand.name %></td>
+    <td><%= obj.settlement_date %></td>
+    <td><%= obj.closing_date %></td>
+    <td><%= obj.exercise_price %></td>
+    <td><%= obj.option_premium %></td>
+    <td width="80px">
+      <%= link_to '編集' ,edit_admin_product_path(obj) %></td>
+    <td><%= link_to '削除',admin_product_path(obj), method: :delete, data: { confirm: '本当に削除しますか？'} %></td>
+  </tr>
+  <% end %>
+</table>
+<%= link_to '<<*管理者画面に戻る', admins_path %>

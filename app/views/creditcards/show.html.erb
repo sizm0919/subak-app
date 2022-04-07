@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8"/>
+   <!-- Bootstrap用CSSの読み込み -->
+  <link
+    rel="stylesheet"
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  />
+  <!-- Bootstrap用JavaScriptの読み込み -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+
+<div class="mypage-main col-9">
+  <h2 class="header_title">
+    支払い方法
+  </h2>
+  <div class="single-container">
+      <h3>クレジットカード一覧</h3>
+      <% if @card.present? %>
+        <div class="container">
+          <div class="creditcard-info">
+            <%= image_tag "creditcards/#{@card_image}",width:'34',height:'20', alt:'master-card' %>
+            <p class="creditcard-info__number">
+              <%= "**** **** **** " + @card_info.last4 %>
+            </p>
+            <p class="creditcard-info__period"></p>
+            <%= @exp_month + " / " + @exp_year %>
+            <%= button_to "削除する", creditcard_path(@card), method: :delete, class:"creditcard-info__delete" %>
+          </div>
+        </div>
+      <% else %>
+        <div class="new-card">
+            クレジットカードを追加する
+          <%= form_with model: @card,url: creditcards_path, local: true do |f| %>
+            <script
+              type="text/javascript"
+              src="https://checkout.pay.jp/"
+              class="payjp-button"
+              data-key=<%= ENV["PAYJP_KEY"] %>
+              data-submit-text="上記のカードを登録する"
+              data-text="カードを追加"
+              data-partial="true"
+              data-on-created="onCreated"
+            ></script>
+          <% end %>
+          </div>
+            <% if @card.present? %>
+            <%= render "create", creditcards: @cards %>
+          <% end %>
+
+      <% end %>
+    
+  </div>
+</div>
