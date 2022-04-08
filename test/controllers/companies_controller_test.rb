@@ -44,5 +44,5 @@ class CompaniesControllerTest < ActionDispatch::IntegrationTest
     end
 
     assert_redirected_to companies_url
-  end
+  end 
 end

@@ -1,23 +1,53 @@
-<h1 class="display-4 text-primary">Admin_Products</h1>
-<table class="table">
-  <a href="/admin_products/new">追加</a></td>
-  <tr>
-    <th>ID</th><th>コール/プット</th><th>銘柄</th><th>満期日</th><th>購入締切日</th><th>行使価格</th>
-      <th>オプションプレミアム</th><th colspan="2"></th>
-  </tr>
-  <% @admin_products.each do |obj| %>
-  <tr>
-    <td><%= obj.id %></td>
-    <td><%= obj.callput %></td>
-    <td><%= obj.brand.name %></td>
-    <td><%= obj.settlement_date %></td>
-    <td><%= obj.closing_date %></td>
-    <td><%= obj.exercise_price %></td>
-    <td><%= obj.option_premium %></td>
-    <td width="80px">
-      <%= link_to '編集' ,edit_admin_product_path(obj) %></td>
-    <td><%= link_to '削除',admin_product_path(obj), method: :delete, data: { confirm: '本当に削除しますか？'} %></td>
-  </tr>
-  <% end %>
-</table>
-<%= link_to '<<*管理者画面に戻る', admins_path %>
+<main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+  <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Product</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+      <div class="btn-group me-2">
+        <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
+        <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
+      </div>
+      <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+        <span data-feather="calendar"></span>
+        This week
+      </button>
+    </div>
+  </div>
+      
+
+  <a href="/admin_products/new">商品を追加する</a></td>
+  
+  <h2>Section title</h2>
+  <div class="table-responsive">
+    <table class="table table-striped table-sm">
+      <thead>
+        <tr>
+        <th>ID</th>
+        <th>コール/プット</th>
+        <th>銘柄</th>
+        <th>満期日</th>
+        <th>購入締切日</th>
+        <th>行使価格</th>
+        <th>オプションプレミアム</th>
+        <th colspan="2"></th>
+      </thead>
+      <tbody>
+        </tr>
+        <% @admin_products.each do |obj| %>
+        <tr>
+          <td><%= obj.id %></td>
+          <td><%= obj.callput %></td>
+          <td><%= obj.brand.name %></td>
+          <td><%= obj.settlement_date %></td>
+          <td><%= obj.closing_date %></td>
+          <td><%= obj.exercise_price %></td>
+          <td><%= obj.option_premium %></td>
+          <td width="80px">
+            <%= link_to '編集' ,edit_admin_product_path(obj) %></td>
+          <td><%= link_to '削除',admin_product_path(obj), method: :delete, data: { confirm: '本当に削除しますか？'} %></td>
+        </tr>
+        <% end %>
+      </tbody>
+      </table>
+      <%= link_to '<<*管理者画面に戻る', admins_path %>
+  </div>
+</main>

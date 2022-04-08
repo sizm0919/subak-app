@@ -69,6 +69,7 @@ Rails.application.routes.draw do
   get 'admins', to: 'admins#index'
   post 'admins/index'
   post 'admins', to: 'admins#index'
+  get 'admins/help'
 
 
 
