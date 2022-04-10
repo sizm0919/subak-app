@@ -68,4 +68,6 @@ gem 'dotenv-rails'
 
 gem 'jquery-rails'
 
+gem 'ransack'
+
 

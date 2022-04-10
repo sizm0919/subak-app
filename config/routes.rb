@@ -5,7 +5,12 @@ Rails.application.routes.draw do
   resources :carts, only: [:show]
   resources :orders
   resources :creditcards
-  resources :admin_products
+  resources :admin_products do
+    collection do
+      get 'search'
+      get 'output'
+    end
+  end
  
   root to: 'top#index'
 
