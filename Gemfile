@@ -68,6 +68,10 @@ gem 'dotenv-rails'
 
 gem 'jquery-rails'
 
+#検索およびソートのためのライブラリ
 gem 'ransack'
+
+#CSVインポートのためのライブラリ
+gem 'roo'
 
 
