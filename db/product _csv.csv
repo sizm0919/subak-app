@@ -1,0 +1,4 @@
+callput,brand_id,settlement_date,closing_date,exercise_price,option_premium
+コール,2,2021-09-30,2021-06-30,3167,200
+コール,3,2021-12-31,2021-09-30,3189,300
+

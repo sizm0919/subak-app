@@ -62,7 +62,11 @@
         <% end %>
       </tbody>
       </table>
-      <%= link_to "csvで出力する",output_admin_products_path(format: :csv) %><br>
+      <%= link_to "csv出力",output_admin_products_path(format: :csv) %><br>
+      <%= form_tag import_admin_products_path, multipart: true do %>
+        <%= file_field_tag :file %>
+        <%= submit_tag "csvインポート" %>
+      <% end %>
       <%= link_to '<<*管理者画面に戻る', admins_path %>
   </div>
 </main>

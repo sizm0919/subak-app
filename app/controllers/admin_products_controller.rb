@@ -60,6 +60,11 @@ class AdminProductsController < ApplicationController
     end
   end
 
+  def import
+    Product.import(params[:file])
+    redirect_to admin_products_path
+  end
+
   private
 
   def product_params
@@ -76,10 +81,11 @@ class AdminProductsController < ApplicationController
 
   def send_posts_csv(posts)
     csv_data = CSV.generate do |csv|
-      column_names = %w(callput settlement_date  closing_date exercise_price option_premium brand_id)
+      column_names = %w(id callput settlement_date  closing_date exercise_price option_premium brand_id)
       csv << column_names
       posts.each do |post|
         column_values = [
+          post.id,
           post.callput,
           post.settlement_date,
           post.closing_date,
