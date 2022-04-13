@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_05_232650) do
+ActiveRecord::Schema.define(version: 2022_04_12_073004) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -95,6 +95,16 @@ ActiveRecord::Schema.define(version: 2022_04_05_232650) do
     t.index ["account_id"], name: "index_creditcards_on_account_id"
   end
 
+  create_table "messages", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.bigint "account_id"
+    t.bigint "room_id"
+    t.index ["account_id"], name: "index_messages_on_account_id"
+    t.index ["room_id"], name: "index_messages_on_room_id"
+  end
+
   create_table "orders", force: :cascade do |t|
     t.integer "quantity"
     t.string "settlement_flag"
@@ -127,10 +137,17 @@ ActiveRecord::Schema.define(version: 2022_04_05_232650) do
     t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 
+  create_table "rooms", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
   add_foreign_key "cattle_nums", "brands"
   add_foreign_key "creditcards", "accounts"
+  add_foreign_key "messages", "accounts"
+  add_foreign_key "messages", "rooms"
   add_foreign_key "orders", "accounts"
   add_foreign_key "orders", "products"
   add_foreign_key "product_prices", "brands"

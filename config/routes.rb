@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'rooms/show'
   resources :companies
   resources :product_prices
   resources :products
@@ -77,6 +78,10 @@ Rails.application.routes.draw do
   post 'admins', to: 'admins#index'
   get 'admins/help'
 
+  #chat
+  get 'rooms/index'
+  
+  resources :rooms, only: %i[show]
 
 
 end

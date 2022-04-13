@@ -6,4 +6,5 @@ class Account < ApplicationRecord
   has_one :cart
   has_one :company
   has_many :order, dependent: :destroy
+  has_many :messages
 end

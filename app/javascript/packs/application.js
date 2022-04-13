@@ -13,6 +13,8 @@ import "chartkick/chart.js"
 //= require popper　
 //= require bootstrap-sprockets
 
+require('jquery')
+
 
 Rails.start()
 Turbolinks.start()
