@@ -42,7 +42,9 @@
         <th>購入締切日</th>
         <th>行使価格</th>
         <th>オプションプレミアム</th>
-        <th colspan="2"></th>
+        <th>公開/非公開</th>
+
+        <th colspan="3"></th>
       </thead>
       <tbody>
         </tr>
@@ -55,8 +57,20 @@
           <td><%= obj.closing_date %></td>
           <td><%= obj.exercise_price %></td>
           <td><%= obj.option_premium %></td>
-          <td width="80px">
-            <%= link_to '編集' ,edit_admin_product_path(obj) %></td>
+
+          <% if obj.published == 0 then
+                flag = "公開"
+                change = "非公開にする"
+             else
+                flag = "非公開"
+                change = "公開にする"
+             end
+          %>
+
+          <td><%= flag%></td>
+          <td width="120px">
+          <%= link_to change ,changeflag_admin_product_path(obj), method: :post, data: { confirm: '公開/非公開を変更しますか？'} %></td>
+          <td><%= link_to '編集' ,edit_admin_product_path(obj) %></td>
           <td><%= link_to '削除',admin_product_path(obj), method: :delete, data: { confirm: '本当に削除しますか？'} %></td>
         </tr>
         <% end %>

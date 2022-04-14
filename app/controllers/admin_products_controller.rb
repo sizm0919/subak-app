@@ -60,10 +60,25 @@ class AdminProductsController < ApplicationController
     end
   end
 
+  def changeflag
+    @admin_product = Product.find(params[:id])
+    
+    if @admin_product.published == 0 then
+      @admin_product.update(published:1)
+    else
+      @admin_product.update(published:0)
+    end
+
+    redirect_to admin_products_path
+  end
+
+
   def import
     Product.import(params[:file])
     redirect_to admin_products_path
   end
+
+  
 
   private
 

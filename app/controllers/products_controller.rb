@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   layout 'products'
 
   def index
-    @products = Product.all
+    @products = Product.where(published:0)
   end
 
   def show

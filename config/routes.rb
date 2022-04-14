@@ -12,6 +12,9 @@ Rails.application.routes.draw do
       get 'output'
       post 'import'
     end
+    member do
+      post 'changeflag'
+    end
   end
  
   root to: 'top#index'

@@ -9,7 +9,7 @@ class TopController < ApplicationController
     end
 
     def products
-        @products = Product.left_joins(:brand).select('brands.*,products.*')
+        @products = Product.left_joins(:brand).select('brands.*,products.*').where(published:0)
     end
     
     def position
