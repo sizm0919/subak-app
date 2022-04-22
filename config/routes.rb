@@ -83,8 +83,12 @@ Rails.application.routes.draw do
 
   #chat
   get 'rooms/index'
-  
-  resources :rooms, only: %i[show]
+  post 'rooms/:id', to: 'rooms#show', as: 'room'
+  post 'rooms/admin/:id', to: 'rooms#adminshow', as: 'admin_room'
+  #resources :rooms, only: %i[show]
+
+  #admin_user
+  get 'admin_accounts', to: 'admin_accounts#index'
 
 
 end

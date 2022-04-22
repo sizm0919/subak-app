@@ -35,3 +35,9 @@ CSV.foreach('db/admin.csv', headers: true) do |row|
         email: row[0],
         password: row[1])
 end
+
+CSV.foreach('db/account.csv', headers: true) do |row|
+    Account.create(
+        email: row[0],
+        password: row[1])
+end

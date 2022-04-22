@@ -1,7 +1,5 @@
 <div>
   <ul>
-    <% @rooms.each do |room| %>
-      <li><%= link_to "ROOM#{room.id}", room_path(room) %></li>
-    <% end %>
+    <li><%= link_to "ROOM", room_path(current_account.id), method: :post %></li>
   </ul>
 </div>

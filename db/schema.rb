@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2022_04_14_011641) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "brand_id"
-    t.integer "published", default: 0, null: false #o:open 1:close
+    t.integer "published", default: 0, null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 

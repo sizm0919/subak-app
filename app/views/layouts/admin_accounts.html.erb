@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= yield(:title) %> | Dashboard</title>
+    <title><%= yield(:title) %> | Product</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.css">
     <%= stylesheet_link_tag 'application', media: 'all' %>
     <%= javascript_pack_tag 'application' %>
   </head>
-  
+
   <body>
   <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Subak-tech</a>
@@ -29,10 +29,7 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link" aria-current="page" href="#">
-              <span data-feather="home"></span>
-              Dashboard
-            </a>
+            <%= link_to "Dashboard", admins_index_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
@@ -43,7 +40,10 @@
             <%= link_to "Product", admin_products_path, class: 'nav-link' %>
           </li>
           <li class="nav-item">
-            <%= link_to "Customers", admin_accounts_path, class: 'nav-link' %>
+            <a class="nav-link" href="#">
+              <span data-feather="users"></span>
+              Customers
+            </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">
@@ -97,4 +97,6 @@
     <%= yield %>
   
     </body>
+  </div>
+</div>
 </html>
